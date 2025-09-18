@@ -27,7 +27,7 @@ public class User {
     private String address;
     private String stateOfOrigin;
 
-//    generated at creation
+//    generated at creation, the bank auto assigns or generates the account nb for you
     private String accountNumber;
     private BigDecimal accountBalance;
     private String email;
