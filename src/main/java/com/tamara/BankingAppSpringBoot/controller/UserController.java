@@ -2,13 +2,11 @@ package com.tamara.BankingAppSpringBoot.controller;
 
 
 import com.tamara.BankingAppSpringBoot.dto.BankResponse;
+import com.tamara.BankingAppSpringBoot.dto.InquiryRequest;
 import com.tamara.BankingAppSpringBoot.dto.UserRequest;
 import com.tamara.BankingAppSpringBoot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
@@ -21,6 +19,30 @@ public class UserController {
     public BankResponse createAccount(@RequestBody UserRequest userRequest){
         return userService.createAccount(userRequest);
     }
+
+    @GetMapping("/user/balanceInquiry/{accountNumber}")
+    public BankResponse balanceInquiry(@PathVariable String accountNumber) {
+        InquiryRequest request = new InquiryRequest(accountNumber);
+        return userService.balanceInquiry(request);
+    }
+
+    @GetMapping("/user/nameInquiry/{accountNumber}")
+    public String nameInquiry(@PathVariable String accountNumber) {
+        InquiryRequest request = new InquiryRequest(accountNumber);
+        return userService.nameInquiry(request);
+    }
+
+
+//    @GetMapping("/user/balanceInquiry")
+//    public BankResponse balanceInquiry(@RequestBody InquiryRequest request){
+//        return userService.balanceInquiry(request);
+//    }
+//
+//    @GetMapping("/user/nameInquiry")
+//    public String nameInquiry(@RequestBody InquiryRequest request){
+//        return userService.nameInquiry(request);
+//    }
+
 
 
 }
