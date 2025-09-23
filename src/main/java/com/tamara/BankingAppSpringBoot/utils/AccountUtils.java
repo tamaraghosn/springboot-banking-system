@@ -9,6 +9,15 @@ public class AccountUtils {
 
     public static final String ACCOUNT_EXISTS_MESSAGE="This user already has an account Created!";
 
+    public static final String ACCOUNT_NOT_EXISTS_CODE ="003";
+
+    public static final String ACCOUNT_NOT_EXISTS_MESSAGE="This user doesn't have an account!";
+
+    public static final String ACCOUNT_FOUND_CODE ="004";
+
+    public static final String ACCOUNT_FOUND_SUCCESS="User is found";
+
+
     public static final String ACCOUNT_CREATION_SUCCESS="002";
 
     public static final String ACCOUNT_CREATION_MESSAGE="Account has been successfully created!";

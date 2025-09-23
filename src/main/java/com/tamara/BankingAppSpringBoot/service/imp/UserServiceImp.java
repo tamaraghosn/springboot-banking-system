@@ -1,9 +1,6 @@
 package com.tamara.BankingAppSpringBoot.service.imp;
 
-import com.tamara.BankingAppSpringBoot.dto.AccountInfo;
-import com.tamara.BankingAppSpringBoot.dto.BankResponse;
-import com.tamara.BankingAppSpringBoot.dto.EmailDetails;
-import com.tamara.BankingAppSpringBoot.dto.UserRequest;
+import com.tamara.BankingAppSpringBoot.dto.*;
 import com.tamara.BankingAppSpringBoot.entity.User;
 import com.tamara.BankingAppSpringBoot.repo.UserRepository;
 import com.tamara.BankingAppSpringBoot.service.EmailService;
@@ -92,5 +89,42 @@ public class UserServiceImp implements UserService {
                         .accountName(savedUser.getFirstName() + " " + savedUser.getLastName() + " " + savedUser.getOtherName())
                         .build())
                 .build();
+    }
+
+    @Override
+    public BankResponse balanceInquiry(InquiryRequest inquiryRequest) {
+        // check if the provided account nb exists in the database
+        boolean isAccountExist = userRepository.existsByAccountNumber(inquiryRequest.getAccountNumber());
+
+        if (!isAccountExist){
+            return BankResponse.builder()
+                    .responseCode(AccountUtils.ACCOUNT_NOT_EXISTS_CODE)
+                    .responseMessage(AccountUtils.ACCOUNT_NOT_EXISTS_MESSAGE)
+                    .accountInfo(null)
+                    .build();
+        }
+        User foundUser = userRepository.findByAccountNumber(inquiryRequest.getAccountNumber());
+        return BankResponse.builder()
+                .responseMessage(AccountUtils.ACCOUNT_FOUND_SUCCESS)
+                .responseCode(AccountUtils.ACCOUNT_FOUND_CODE)
+                .accountInfo(AccountInfo.builder()
+                        .accountBalance(foundUser.getAccountBalance())
+                        .accountNumber(inquiryRequest.getAccountNumber())
+                        .accountName(foundUser.getFirstName() + " " + foundUser.getLastName() + " "+ foundUser.getOtherName())
+                        .build())
+                .build();
+    }
+
+    @Override
+    public String nameInquiry(InquiryRequest inquiryRequest) {
+        // check if the provided account nb exists in the database
+        boolean isAccountExist = userRepository.existsByAccountNumber(inquiryRequest.getAccountNumber());
+
+        if (!isAccountExist){
+
+            return AccountUtils.ACCOUNT_NOT_EXISTS_MESSAGE;
+        }
+        User foundUser = userRepository.findByAccountNumber(inquiryRequest.getAccountNumber());
+        return foundUser.getFirstName() + " " + foundUser.getLastName() + " " + foundUser.getOtherName();
     }
 }
