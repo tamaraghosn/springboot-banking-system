@@ -17,6 +17,10 @@ public class AccountUtils {
 
     public static final String ACCOUNT_FOUND_SUCCESS="User is found";
 
+    public static final String ACCOUNT_CREDITED_SUCCESS_CODE ="005";
+
+    public static final String ACCOUNT_CREDITED_SUCCESS_MESSAGE="Account credited successfully";
+
 
     public static final String ACCOUNT_CREATION_SUCCESS="002";
 

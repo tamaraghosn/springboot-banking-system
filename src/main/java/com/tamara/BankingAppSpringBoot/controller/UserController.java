@@ -2,6 +2,7 @@ package com.tamara.BankingAppSpringBoot.controller;
 
 
 import com.tamara.BankingAppSpringBoot.dto.BankResponse;
+import com.tamara.BankingAppSpringBoot.dto.CreditDebitRequest;
 import com.tamara.BankingAppSpringBoot.dto.InquiryRequest;
 import com.tamara.BankingAppSpringBoot.dto.UserRequest;
 import com.tamara.BankingAppSpringBoot.service.UserService;
@@ -30,6 +31,11 @@ public class UserController {
     public String nameInquiry(@PathVariable String accountNumber) {
         InquiryRequest request = new InquiryRequest(accountNumber);
         return userService.nameInquiry(request);
+    }
+
+    @PostMapping("/user/credit")
+    public BankResponse creditAccount(@RequestBody CreditDebitRequest creditDebitRequest){
+        return userService.creditAccount(creditDebitRequest);
     }
 
 
