@@ -71,11 +71,6 @@ public class UserServiceImp implements UserService {
                         "Best regards,\n" +
                         "Your Banking App Team")
                 .build();
-//                .messageBody("Congratulations! Your Account Has been Successfully Created.\n Your Account Details: \n " +
-//                        "Account Name: " + savedUser.getFirstName() + " " +
-//                        savedUser.getLastName() + " " + savedUser.getOtherName() + "\nAccount Number; "
-//                        + savedUser.getAccountNumber()
-//                        )
 
 
         emailService.sendEmailAlerts(emailDetails);
@@ -126,5 +121,36 @@ public class UserServiceImp implements UserService {
         }
         User foundUser = userRepository.findByAccountNumber(inquiryRequest.getAccountNumber());
         return foundUser.getFirstName() + " " + foundUser.getLastName() + " " + foundUser.getOtherName();
+    }
+
+    @Override
+    public BankResponse creditAccount(CreditDebitRequest creditDebitRequest) {
+        boolean isAccountExist = userRepository.existsByAccountNumber(creditDebitRequest.getAccountNumber());
+
+        if (!isAccountExist){
+            return BankResponse.builder()
+                    .responseCode(AccountUtils.ACCOUNT_NOT_EXISTS_CODE)
+                    .responseMessage(AccountUtils.ACCOUNT_NOT_EXISTS_MESSAGE)
+                    .accountInfo(null)
+                    .build();
+        }
+
+
+        User userToCredit = userRepository.findByAccountNumber(creditDebitRequest.getAccountNumber());
+
+        userToCredit.setAccountBalance(userToCredit.getAccountBalance().add(creditDebitRequest.getAmount()));
+
+        userRepository.save(userToCredit);
+
+        return BankResponse.builder()
+                .responseCode(AccountUtils.ACCOUNT_CREDITED_SUCCESS_CODE)
+                .responseMessage(AccountUtils.ACCOUNT_CREDITED_SUCCESS_MESSAGE)
+                .accountInfo(AccountInfo.builder()
+                        .accountName(userToCredit.getFirstName() + " " + userToCredit.getLastName() + " " + userToCredit.getOtherName())
+                        .accountNumber(userToCredit.getAccountNumber())
+                        .accountBalance(userToCredit.getAccountBalance())
+                        .build())
+                .build();
+
     }
 }
