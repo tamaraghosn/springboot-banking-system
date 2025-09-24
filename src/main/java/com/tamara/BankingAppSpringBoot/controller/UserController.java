@@ -38,6 +38,11 @@ public class UserController {
         return userService.creditAccount(creditDebitRequest);
     }
 
+    @PostMapping("/user/debit")
+    public BankResponse debitAccount(@RequestBody CreditDebitRequest creditDebitRequest){
+        return userService.debitAccount(creditDebitRequest);
+    }
+
 
 //    @GetMapping("/user/balanceInquiry")
 //    public BankResponse balanceInquiry(@RequestBody InquiryRequest request){
