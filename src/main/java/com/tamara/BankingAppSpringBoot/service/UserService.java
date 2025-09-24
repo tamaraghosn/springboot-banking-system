@@ -15,4 +15,6 @@ public interface UserService {
 
     BankResponse creditAccount(CreditDebitRequest creditDebitRequest);
 
+    BankResponse debitAccount(CreditDebitRequest creditDebitRequest);
+
 }
