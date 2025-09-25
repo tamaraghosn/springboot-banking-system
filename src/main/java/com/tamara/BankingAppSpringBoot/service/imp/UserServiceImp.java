@@ -199,4 +199,60 @@ public class UserServiceImp implements UserService {
                 .build();
 
     }
+
+    @Override
+    public BankResponse transfer(TransferRequest transferRequest) {
+        // get the account i'm debiting from
+        // check if the amount is not more the current account's balance
+        // debit the account
+        // get the account i'm crediting
+        //  credit the account
+
+        User sourceAccountUser = userRepository.findByAccountNumber(transferRequest.getSourceAccountNumber());
+
+        if (sourceAccountUser == null) {
+            return BankResponse.builder()
+                    .responseCode(AccountUtils.ACCOUNT_NOT_EXISTS_CODE)
+                    .responseMessage("Source Account does not exist! ")
+                    .accountInfo(null)
+                    .build();
+        }
+
+        if(sourceAccountUser.getAccountBalance().compareTo(transferRequest.getAmount())<0){
+            return BankResponse.builder()
+                    .responseCode(AccountUtils.INSUFFICIENT_BALANCE_CODE)
+                    .responseMessage(AccountUtils.INSUFFICIENT_BALANCE_MESSAGE)
+                    .accountInfo(null)
+                    .build();
+        }
+
+        User destinationAccountUser = userRepository.findByAccountNumber(transferRequest.getDestinationAccountNumber());
+
+        if (destinationAccountUser==null){
+            return BankResponse.builder()
+                    .responseMessage("Destination account does not exist")
+                    .responseCode(AccountUtils.ACCOUNT_NOT_EXISTS_CODE)
+                    .accountInfo(null)
+                    .build();
+
+        }
+
+        sourceAccountUser.setAccountBalance(sourceAccountUser.getAccountBalance().subtract(transferRequest.getAmount()));
+        destinationAccountUser.setAccountBalance(destinationAccountUser.getAccountBalance().add(transferRequest.getAmount()));
+
+        userRepository.save(sourceAccountUser);
+        userRepository.save(destinationAccountUser);
+
+        return  BankResponse.builder()
+                .responseCode(AccountUtils.TRANSFER_SUCCESS_CODE)
+                .responseMessage(AccountUtils.TRANSFER_SUCCESS_MESSAGE)
+                .accountInfo(AccountInfo.builder()
+                        .accountBalance(sourceAccountUser.getAccountBalance())
+                        .accountNumber(sourceAccountUser.getAccountNumber())
+                        .accountName(sourceAccountUser.getFirstName() + " " + sourceAccountUser.getLastName() + " " + sourceAccountUser.getOtherName())
+                        .build())
+
+
+                .build();
+    }
 }
