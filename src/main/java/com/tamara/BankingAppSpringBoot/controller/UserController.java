@@ -1,10 +1,7 @@
 package com.tamara.BankingAppSpringBoot.controller;
 
 
-import com.tamara.BankingAppSpringBoot.dto.BankResponse;
-import com.tamara.BankingAppSpringBoot.dto.CreditDebitRequest;
-import com.tamara.BankingAppSpringBoot.dto.InquiryRequest;
-import com.tamara.BankingAppSpringBoot.dto.UserRequest;
+import com.tamara.BankingAppSpringBoot.dto.*;
 import com.tamara.BankingAppSpringBoot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +38,11 @@ public class UserController {
     @PostMapping("/user/debit")
     public BankResponse debitAccount(@RequestBody CreditDebitRequest creditDebitRequest){
         return userService.debitAccount(creditDebitRequest);
+    }
+
+    @PostMapping("/user/transfer")
+    public BankResponse transfer(@RequestBody TransferRequest transferRequest){
+        return userService.transfer(transferRequest);
     }
 
 
