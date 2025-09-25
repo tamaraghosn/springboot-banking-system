@@ -243,6 +243,33 @@ public class UserServiceImp implements UserService {
         userRepository.save(sourceAccountUser);
         userRepository.save(destinationAccountUser);
 
+        // alert the account that's sending the money
+
+        EmailDetails debitAlert = EmailDetails.builder()
+                .recipient(sourceAccountUser.getEmail())
+                .subject("Transfer Debit Alert")
+                .messageBody("Dear " + sourceAccountUser.getFirstName() + ",\n\n" +
+                        "You have transferred " + transferRequest.getAmount() +
+                        " to account " + destinationAccountUser.getAccountNumber() + ".\n" +
+                        "Your new balance is " + sourceAccountUser.getAccountBalance() + ".")
+                .build();
+        emailService.sendEmailAlerts(debitAlert);
+
+        // alert the account thats receiving money
+
+
+        EmailDetails creditAlert = EmailDetails.builder()
+                .recipient(destinationAccountUser.getEmail())
+                .subject("Transfer Credit Alert")
+                .messageBody("Dear " + destinationAccountUser.getFirstName() + ",\n\n" +
+                        "Your account has been credited with " + transferRequest.getAmount() +
+                        " from account " + sourceAccountUser.getAccountNumber() + ".\n" +
+                        "Your new balance is " + destinationAccountUser.getAccountBalance() + ".")
+                .build();
+
+        emailService.sendEmailAlerts(creditAlert);
+
+
         return  BankResponse.builder()
                 .responseCode(AccountUtils.TRANSFER_SUCCESS_CODE)
                 .responseMessage(AccountUtils.TRANSFER_SUCCESS_MESSAGE)
