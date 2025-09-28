@@ -4,6 +4,7 @@ import com.tamara.BankingAppSpringBoot.dto.*;
 import com.tamara.BankingAppSpringBoot.entity.User;
 import com.tamara.BankingAppSpringBoot.repo.UserRepository;
 import com.tamara.BankingAppSpringBoot.service.EmailService;
+import com.tamara.BankingAppSpringBoot.service.TransactionService;
 import com.tamara.BankingAppSpringBoot.service.UserService;
 import com.tamara.BankingAppSpringBoot.utils.AccountUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class UserServiceImp implements UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    TransactionService transactionService;
 
 
     @Autowired
@@ -142,6 +146,15 @@ public class UserServiceImp implements UserService {
 
         userRepository.save(userToCredit);
 
+        // Save Transaction
+        TransactionDto transactionDto = TransactionDto.builder()
+                .transactionType("CREDIT")
+                .amount(creditDebitRequest.getAmount())
+                .accountNumber(userToCredit.getAccountNumber())
+                .build();
+
+        transactionService.saveTransaction(transactionDto);
+
         return BankResponse.builder()
                 .responseCode(AccountUtils.ACCOUNT_CREDITED_SUCCESS_CODE)
                 .responseMessage(AccountUtils.ACCOUNT_CREDITED_SUCCESS_MESSAGE)
@@ -187,6 +200,15 @@ public class UserServiceImp implements UserService {
         userToDebit.setAccountBalance(userToDebit.getAccountBalance().subtract(creditDebitRequest.getAmount()));
         // update DB
         userRepository.save(userToDebit);
+
+        // Save Transaction
+        TransactionDto transactionDto = TransactionDto.builder()
+                .transactionType("DEBIT")
+                .amount(creditDebitRequest.getAmount())
+                .accountNumber(userToDebit.getAccountNumber())
+                .build();
+
+        transactionService.saveTransaction(transactionDto);
 
         return BankResponse.builder()
                 .responseCode(AccountUtils.ACCOUNT_DEBITED_SUCCESS_CODE)
@@ -242,6 +264,15 @@ public class UserServiceImp implements UserService {
 
         userRepository.save(sourceAccountUser);
         userRepository.save(destinationAccountUser);
+
+        // Save Transaction
+        TransactionDto transactionDto = TransactionDto.builder()
+                .transactionType("TRANSFER")
+                .amount(transferRequest.getAmount())
+                .accountNumber(sourceAccountUser.getAccountNumber())
+                .build();
+
+        transactionService.saveTransaction(transactionDto);
 
         // alert the account that's sending the money
 
