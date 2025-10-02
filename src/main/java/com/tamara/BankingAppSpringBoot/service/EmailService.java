@@ -6,4 +6,6 @@ public interface EmailService {
 
     void sendEmailAlerts(EmailDetails emailDetails);
 
+    void  sendEmailWithAttachment(EmailDetails emailDetails);
+
 }
