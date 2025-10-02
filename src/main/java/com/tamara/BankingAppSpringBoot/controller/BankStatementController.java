@@ -1,6 +1,7 @@
 package com.tamara.BankingAppSpringBoot.controller;
 
 
+import com.itextpdf.text.DocumentException;
 import com.tamara.BankingAppSpringBoot.entity.Transaction;
 import com.tamara.BankingAppSpringBoot.service.imp.BankStatement;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 @RestController
@@ -25,7 +27,7 @@ public class BankStatementController {
             @PathVariable String accountNumber,
             @RequestParam String startDate,
             @RequestParam String endDate
-    ) {
+    ) throws DocumentException, FileNotFoundException {
 
         return bankStatement.generateStatement(accountNumber, startDate, endDate);
     }
