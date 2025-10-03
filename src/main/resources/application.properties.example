@@ -14,3 +14,11 @@ spring.mail.username=tghosn428@gmail.com
 spring.mail.password=
 spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true
+
+# JWT
+jwt.secret=ReplaceThisWithAStrongSecretKeyChangeMe
+jwt.expiration-ms=3600000   # 1 hour
+
+# Security (optional)
+spring.security.user.name=admin
+spring.security.user.password=admin
