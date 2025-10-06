@@ -31,6 +31,8 @@ public class User {
     private String accountNumber;
     private BigDecimal accountBalance;
     private String email;
+    private  String password; // we're saving encrypted passsword
+
     private  String phoneNumber;
     private String alternativeNumber;
     private  String status;
