@@ -8,6 +8,7 @@ import com.tamara.BankingAppSpringBoot.service.TransactionService;
 import com.tamara.BankingAppSpringBoot.service.UserService;
 import com.tamara.BankingAppSpringBoot.utils.AccountUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -16,6 +17,9 @@ import java.math.BigDecimal;
 @Service
 public class UserServiceImp implements UserService {
 
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Autowired
     UserRepository userRepository;
@@ -53,6 +57,7 @@ public class UserServiceImp implements UserService {
                 .accountNumber(AccountUtils.generateAccountNumber())
                 .accountBalance(BigDecimal.ZERO)
                 .email(userRequest.getEmail())
+                .password(userRequest.getPassword())
                 .phoneNumber(userRequest.getPhoneNumber())
                 .alternativeNumber(userRequest.getAlternativeNumber())
                 .status("ACTIVE")
