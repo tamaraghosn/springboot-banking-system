@@ -21,11 +21,17 @@ public class SecurityConfig {
 
 
 
+//    (used to hash and verify passwords).
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 
+//    Allows anyone to access /api/users/create (for signup).
+
+//Requires authentication for all other APIs.
+
+//Disables sessions (since JWT will make the app stateless).
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(csrf -> csrf.disable())
