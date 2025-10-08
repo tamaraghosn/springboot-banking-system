@@ -53,6 +53,7 @@ public class JwtUtil {
                 .getBody();
 
         return  claims.getSubject();
+        // usually username or email is in the subject
     }
 
     public boolean validateToken(String token){
