@@ -50,9 +50,6 @@ public class SecurityConfig {
         return  daoAuthenticationProvider;
     }
 
-
-
-
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(csrf -> csrf.disable())
