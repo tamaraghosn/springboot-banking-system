@@ -55,6 +55,7 @@ public class SecurityConfig {
         httpSecurity.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/api/users/create").permitAll() // whitelist this
+                        .requestMatchers(HttpMethod.POST, "/api/users/login").permitAll()
                         .anyRequest().authenticated() // other endpoints need authentication
                 );
         httpSecurity.sessionManagement(

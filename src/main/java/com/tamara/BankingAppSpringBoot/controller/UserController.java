@@ -28,6 +28,11 @@ public class UserController {
     }
 
 
+    @PostMapping("/login")
+    public  BankResponse login(@RequestBody LoginDto loginDto){
+        return userService.login(loginDto);
+    }
+
 
     @Operation(
             summary = "Balance Inquiry",
