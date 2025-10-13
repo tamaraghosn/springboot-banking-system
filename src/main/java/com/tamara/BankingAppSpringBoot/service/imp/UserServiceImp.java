@@ -1,6 +1,8 @@
 package com.tamara.BankingAppSpringBoot.service.imp;
 
+import com.tamara.BankingAppSpringBoot.config.JwtUtil;
 import com.tamara.BankingAppSpringBoot.dto.*;
+import com.tamara.BankingAppSpringBoot.entity.Role;
 import com.tamara.BankingAppSpringBoot.entity.User;
 import com.tamara.BankingAppSpringBoot.repo.UserRepository;
 import com.tamara.BankingAppSpringBoot.service.EmailService;
@@ -8,6 +10,9 @@ import com.tamara.BankingAppSpringBoot.service.TransactionService;
 import com.tamara.BankingAppSpringBoot.service.UserService;
 import com.tamara.BankingAppSpringBoot.utils.AccountUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +25,14 @@ public class UserServiceImp implements UserService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    JwtUtil jwtUtil;
+
 
     @Autowired
     UserRepository userRepository;
@@ -57,6 +70,7 @@ public class UserServiceImp implements UserService {
                 .accountNumber(AccountUtils.generateAccountNumber())
                 .accountBalance(BigDecimal.ZERO)
                 .email(userRequest.getEmail())
+                .role(Role.valueOf("ROLE_ADMIN"))
                 .password(passwordEncoder.encode(userRequest.getPassword()))
                 .phoneNumber(userRequest.getPhoneNumber())
                 .alternativeNumber(userRequest.getAlternativeNumber())
@@ -94,6 +108,29 @@ public class UserServiceImp implements UserService {
                         .build())
                 .build();
     }
+
+    @Override
+    public BankResponse login(LoginDto loginDto) {
+        Authentication authentication = null;
+        authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword())
+        );
+
+        EmailDetails loginAlert = EmailDetails.builder()
+                .subject("You're logged in!")
+                .recipient(loginDto.getEmail())
+                .messageBody("You logged into your Bank account. If you did not initiate this request, please contact your bank.")
+                .build();
+
+        emailService.sendEmailAlerts(loginAlert);
+
+        return BankResponse.builder()
+                .responseCode("Login Success")
+                .responseMessage(jwtUtil.generateToken(authentication))
+                .build();
+
+    }
+
 
     @Override
     public BankResponse balanceInquiry(InquiryRequest inquiryRequest) {

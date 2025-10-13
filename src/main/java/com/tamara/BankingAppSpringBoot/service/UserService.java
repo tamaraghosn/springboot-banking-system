@@ -6,6 +6,8 @@ public interface UserService {
 
     BankResponse createAccount(UserRequest userRequest);
 
+    BankResponse login(LoginDto loginDto);
+
     BankResponse balanceInquiry(InquiryRequest inquiryRequest);
 
     String nameInquiry(InquiryRequest inquiryRequest);
@@ -15,6 +17,5 @@ public interface UserService {
     BankResponse debitAccount(CreditDebitRequest creditDebitRequest);
 
     BankResponse transfer(TransferRequest transferRequest);
-
 
 }
