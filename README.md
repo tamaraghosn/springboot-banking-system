@@ -91,7 +91,7 @@ git clone https://github.com/tamaraghosn/spring-boot-banking-system.git
 cd spring-boot-banking-system
 ```
 
-### 🛢️ Database Configuration
+### 🛢 Database Configuration
 Create a MySQL database (e.g., `banking_system_db`) and update your **application.properties** file with the following configuration:
 
 ```
