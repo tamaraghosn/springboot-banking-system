@@ -87,7 +87,7 @@ This project implements several real-world backend concepts:
 ### 1️⃣ Clone the Repository
 
 ```
-git clone https://github.com/your-username/spring-boot-banking-system.git
+git clone https://github.com/tamaraghosn/spring-boot-banking-system.git
 cd spring-boot-banking-system
 ```
 
@@ -122,7 +122,7 @@ jwt.secret=ReplaceThisWithAStrongSecretKeyChangeMe
 jwt.expiration-ms=3600000   # 1 hour
 ```
 
-### 3️⃣ Run the Application
+### ⚙️ Run the Application
 ```
 mvn spring-boot:run
 ```
@@ -142,7 +142,7 @@ Below is a list of all available REST API endpoints in the Banking System:
 | **POST** | `/api/users/user/transfer` | Transfer funds between accounts |
 | **GET** | `/api/statements/{accountNumber}?startDate=&endDate=` | Generate a PDF bank statement |
 
-## 📧 Email Notifications
+### 📧 Email Notifications
 
 The application automatically sends **real-time email alerts** to keep users informed of their banking activities.  
 These notifications ensure transparency, security, and convenience for every account holder.
@@ -158,7 +158,7 @@ These notifications ensure transparency, security, and convenience for every acc
 
 Each email is delivered using **Spring Boot’s JavaMailSender**, with customized subjects and message bodies tailored to the event type.
 
-## 🎓 What I Learned
+### 🎓 What I Learned
 
 This project was a deep dive into how real-world backend systems operate.  
 It helped me strengthen my problem-solving skills, deepen my understanding of Spring Boot,  
