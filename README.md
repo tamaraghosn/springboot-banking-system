@@ -85,20 +85,41 @@ This project implements several real-world backend concepts:
 - MySQL installed and running
 
 ### 1️⃣ Clone the Repository
+
 ```
 git clone https://github.com/your-username/spring-boot-banking-system.git
 cd spring-boot-banking-system
 ```
 
-### 2️⃣ Configure Database
-Create a MySQL database (e.g., banking_system_db) and update your application.properties file:
+### 2️⃣ Database Configuration
+Create a MySQL database (e.g., `banking_system_db`) and update your **application.properties** file with the following configuration:
 
 ```
-spring.datasource.url=jdbc:mysql://localhost:3306/banking_system_db
-spring.datasource.username=YOUR_DB_USERNAME
-spring.datasource.password=YOUR_DB_PASSWORD
+spring.datasource.url=jdbc:mysql://localhost:3306/banking-system
+spring.datasource.username=root
+spring.datasource.password=
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+```
+
+### ✉️ Email Configuration
+
+```
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=youremail
+spring.mail.password=
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+```
+
+### 🔐 JWT Configuration
+
+```
+jwt.secret=ReplaceThisWithAStrongSecretKeyChangeMe
+jwt.expiration-ms=3600000   # 1 hour
 ```
 
 ### 3️⃣ Run the Application
@@ -153,19 +174,19 @@ and gain hands-on experience building scalable, secure applications.
 
 ---
 
-## 📹 Demo
+### 📹 Demo
 
-🎥 A short demo video is attached — showcasing:  
-- API testing via **Postman**  
-- Secure login using **JWT authentication**  
-- Automated **email notifications** and **PDF statement generation**  
+🎥 **Watch the full demo on my [LinkedIn post](https://www.linkedin.com/posts/tamara-ghosn_springboot-backenddevelopment-java-activity-7383920354794106880-wJrn?utm_source=share&utm_medium=member_desktop&rcm=ACoAADt3CLUBNqbH68cf7wtY7Kx3oiMTtvMnP4o)** showcasing the project in action!  
+
+In this demo, you’ll see:  
+- ⚙️ **API testing via Postman** — demonstrating account creation, login, transfers, and inquiries.  
+- 🔐 **Secure login using JWT authentication** — ensuring protected access to all endpoints.  
+- 📧 **Automated email notifications** — sent for account creation, login alerts, and transactions.  
+- 🧾 **PDF bank statement generation** — dynamically created using iText and delivered via email.  
+
+✨ The demo walks through real API requests and responses, giving a clear view of how the backend logic, security, and integrations work together.
 
 ---
-
-## 🤝 Connect
-
-I’d love to connect with other developers, learners, and professionals in backend development!  
-💬 Feel free to share your **feedback**, **tips**, or **collaboration ideas** — I’m always open to learning and improving.  
 
 ### 🔗 Links
 
