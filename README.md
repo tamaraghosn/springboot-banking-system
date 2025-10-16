@@ -1,11 +1,11 @@
 # 💳 Spring Boot Banking System
 
 A full-fledged **backend banking application** built with **Spring Boot**, designed to simulate real-world financial operations.  
-This project represents my **first backend project** and marks the start of my journey into **Java Spring Boot development** 🚀
+This project represents my **first backend project** and marks the start of my journey into **Java Spring Boot development** 
 
 ---
 
-## 🌟 Overview
+## Overview
 
 This banking system enables secure user management, authentication, and core financial transactions like account creation, credit, debit, and transfers all integrated with real-time balance updates, transaction tracking, and automated email notifications.
 
@@ -39,13 +39,6 @@ It was developed as a learning project to gain hands-on experience in backend en
   - Account creation
   - Login alerts
   - Fund transfers and statements
-
-### 🧩 Architecture & Design
-- Built with **Spring Boot**, **Spring Data JPA**, and **MySQL**
-- Clear layered architecture  
-  `Controller → Service → Repository`
-- Emphasis on **clean code**, **reusability**, and **modularity**
-- Uses DTOs, custom responses, and utility classes for structured APIs
 
 ---
 
@@ -178,7 +171,7 @@ In this demo, you’ll see:
 - 📧 **Automated email notifications** sent for account creation, login alerts, and transactions.  
 - 🧾 **PDF bank statement generation** dynamically created using iText and delivered via email.  
 
-✨ The demo walks through real API requests and responses, giving a clear view of how the backend logic, security, and integrations work together.
+The demo walks through real API requests and responses, giving a clear view of how the backend logic, security, and integrations work together.
 
 ---
 
