@@ -158,12 +158,6 @@ These notifications ensure transparency, security, and convenience for every acc
 
 Each email is delivered using **Spring Boot’s JavaMailSender**, with customized subjects and message bodies tailored to the event type.
 
-### 🎓 What I Learned
-
-This project was a deep dive into how real-world backend systems operate.  
-It helped me strengthen my problem-solving skills, deepen my understanding of Spring Boot,  
-and gain hands-on experience building scalable, secure applications.
-
 ### 💡 Key Takeaways
 
 - 🧠 **Structured scalable backend services** with Spring Boot  
@@ -179,10 +173,10 @@ and gain hands-on experience building scalable, secure applications.
 🎥 **Watch the full demo on my [LinkedIn post](https://www.linkedin.com/posts/tamara-ghosn_springboot-backenddevelopment-java-activity-7383920354794106880-wJrn?utm_source=share&utm_medium=member_desktop&rcm=ACoAADt3CLUBNqbH68cf7wtY7Kx3oiMTtvMnP4o)** showcasing the project in action!  
 
 In this demo, you’ll see:  
-- ⚙️ **API testing via Postman** — demonstrating account creation, login, transfers, and inquiries.  
-- 🔐 **Secure login using JWT authentication** — ensuring protected access to all endpoints.  
-- 📧 **Automated email notifications** — sent for account creation, login alerts, and transactions.  
-- 🧾 **PDF bank statement generation** — dynamically created using iText and delivered via email.  
+- ⚙️ **API testing via Postman** demonstrating account creation, login, transfers, and inquiries.  
+- 🔐 **Secure login using JWT authentication** ensuring protected access to all endpoints.  
+- 📧 **Automated email notifications** sent for account creation, login alerts, and transactions.  
+- 🧾 **PDF bank statement generation** dynamically created using iText and delivered via email.  
 
 ✨ The demo walks through real API requests and responses, giving a clear view of how the backend logic, security, and integrations work together.
 
