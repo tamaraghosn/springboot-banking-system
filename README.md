@@ -49,7 +49,7 @@ It was developed as a learning project to gain hands-on experience in backend en
 
 ---
 
-## 🧠 Technical Highlights
+### 🧠 Technical Highlights
 
 This project implements several real-world backend concepts:
 - **JWT-based stateless authentication**
@@ -61,7 +61,7 @@ This project implements several real-world backend concepts:
 
 ---
 
-## 🧪 Tech Stack
+### 🧪 Tech Stack
 
 | Category | Technology |
 |-----------|-------------|
@@ -77,21 +77,21 @@ This project implements several real-world backend concepts:
 
 ---
 
-## 🚀 Setup Instructions
+### 🚀 Setup Instructions
 
 ### Prerequisites
 - Java 17 or higher  
 - Maven 3.8+  
 - MySQL installed and running
 
-### 1️⃣ Clone the Repository
+### 🧬 Clone the Repository
 
 ```
 git clone https://github.com/tamaraghosn/spring-boot-banking-system.git
 cd spring-boot-banking-system
 ```
 
-### 2️⃣ Database Configuration
+### 🛢️ Database Configuration
 Create a MySQL database (e.g., `banking_system_db`) and update your **application.properties** file with the following configuration:
 
 ```
