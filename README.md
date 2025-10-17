@@ -151,14 +151,6 @@ These notifications ensure transparency, security, and convenience for every acc
 
 Each email is delivered using **Spring Boot’s JavaMailSender**, with customized subjects and message bodies tailored to the event type.
 
-### 💡 Key Takeaways
-
-- 🧠 **Structured scalable backend services** with Spring Boot  
-- 🔐 **Implemented JWT authentication** completely from scratch  
-- ⚙️ **Integrated security, data access, and service layers** seamlessly  
-- 📄 **Generated PDF bank statements** and automated email notifications  
-- 💾 **Handled database transactions** to ensure consistency and data integrity  
-
 ---
 
 ### 📹 Demo
