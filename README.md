@@ -1,6 +1,6 @@
 # 💳 Spring Boot Banking System
 
-A full-fledged **backend banking application** built with **Spring Boot**, designed to simulate real-world financial operations.  
+A full fledged **backend banking application** built with **Spring Boot**, designed to simulate real-world financial operations.  
 This project represents my **first backend project** and marks the start of my journey into **Java Spring Boot development** 
 
 ---
